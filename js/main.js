@@ -45,6 +45,10 @@ const AUTOR__COMMENT = [
   'Колокольчик',
   'Артём',
 ];
+const MIN_LIKES = 15;
+const MAX_LIKES = 200;
+const MIN_COMMENT = 0;
+const MAX_COMMENT = 30;
 
 const getRandomInteger = (a, b) => {
   const lower = Math.ceil(Math.min(a, b));
@@ -54,17 +58,14 @@ const getRandomInteger = (a, b) => {
 };
 
 // comments, массив объектов — список комментариев, оставленных другими пользователями к этой фотографии.
-const minComment = 0;
-const maxComment = 30;
 
-// const amountComments = getRandomInteger(minComment, maxComment);
 
 let commentArray;
 
-const comments = () => {
+const comments = (a, b) => {
   commentArray = [];
   let commentObject = {};
-  const amountComments = getRandomInteger(minComment, maxComment);
+  const amountComments = getRandomInteger(a, b);
   for (let i = 1;i < amountComments + 1; i ++) {
     const j = getRandomInteger(0, 5);
 
@@ -79,19 +80,16 @@ const comments = () => {
   return commentArray;
 };
 
-const minLikes = 15;
-const maxLikes = 200;
-
-const photoDescription = () => {
+const photoDescription = (count) => {
   let photoObject = {};
   const photoArray = [];
-  for (let i = 1;i < NUMBER_PHOTOS + 1; i ++) {
+  for (let i = 1;i < count + 1; i ++) {
     photoObject = {
       id: i,
       url: `${i }.jpg`,
       description: DESCRIPTION_PHONO[i - 1],
-      likes: getRandomInteger(minLikes, maxLikes),
-      comments: comments()
+      likes: getRandomInteger(MIN_LIKES, MAX_LIKES),
+      comments: comments(MIN_COMMENT, MAX_COMMENT)
     };
     photoArray.push(photoObject);
   }
