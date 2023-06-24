@@ -1,11 +1,8 @@
 // Функция для проверки длины строки.
-// Первый вариант объявления функции
 function checkStringLength (string, maxString) {
   return string.length <= maxString;
 }
 checkStringLength ('проверяемая строка', 20);
-//let test1 = checkStringLength ('проверяемая строка', 20);
-//console.log('Проверяемая строка меньше максимально возможной ' + test1);
 
 // Функция для проверки, является ли строка палиндромом.
 function testPalindrome (line) {
@@ -18,16 +15,6 @@ function testPalindrome (line) {
   return (readyLine === newLine);
 }
 testPalindrome ('Кекс');
-/*Проверка палиндрома!
-line = 'топот';
-console.log(line + ' - это палиндром - ' + testPalindrome (line));
-line = 'А роза упала на лапу Азора';
-console.log(line + ' - это палиндром - ' + testPalindrome (line));
-
-console.log(testPalindrome ('ДовОд'));
-line = 'брАк';
-console.log(line + ' - это палиндром - ' + testPalindrome (line));*/
-
 
 // Функция принимает строку, извлекает содержащиеся в ней цифры от 0 до 9 и возвращает их в виде целого положительного числа. Если в строке нет ни одной цифры, функция должна вернуть NaN:
 
@@ -44,29 +31,37 @@ function extractNumber(convertString){
   return advanceNumber;
 }
 extractNumber('Проведено 8 проверок для 8 вариантов строки');
-//console.log(extractNumber('Проведено 8 проверок для 8 вариантов строки'));
-/* Проверка функции извлечения целого числа из строки
-convertString = '2023 год';
-console.log(extractNumber(convertString));
 
-convertString = 'ECMAScript 2022';
-console.log(extractNumber(convertString));
+//Программа "Делу - время"
 
-convertString = '1 кефир, 0.5 батона';
-console.log(extractNumber(convertString));
+const START_WORK_DAY = '8:06';
+const END_WORK_DAY = '18:15';
+const START_MEET = '14:0';
+const MEET_LASTING = 90;
+// преобразование переменных
+const transformTime = (time) => {
+  const interim = time.split(':');
+  interim[0] = +interim[0];
+  interim[1] = interim[1] / 60;
+  const resultTime = interim.reduce((result, current) => result + current, 0);
 
-convertString = 'агент 007';
-console.log(extractNumber(convertString));
+  return resultTime;
+};
 
-convertString = 'а я томат';
-console.log(extractNumber(convertString));
+const startWorkDay = transformTime(START_WORK_DAY);
+const endWordDay = transformTime(END_WORK_DAY);
+const startMeet = transformTime(START_MEET);
+const endMeet = MEET_LASTING / 60 + startMeet;
 
-convertString = 2023;
-console.log(extractNumber(convertString));
+const during = () => {
+  if (startMeet >= startWorkDay && endMeet <= endWordDay) {
+    return true;
+  }
+  return false;
+};
 
-convertString = -1;
-console.log(extractNumber(convertString));
+during();
+// console.log(during());
+// const during = (startMeet >= startWorkDay && endMeet <= endWordDay) ? true : false;
+// console.log(during());
 
-convertString = -1.5;
-console.log(extractNumber(convertString));
-*/
