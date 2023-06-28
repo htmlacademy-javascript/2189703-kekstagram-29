@@ -5,7 +5,6 @@
     ...
 */
 import './data.js';
-// import {photosDescription} from './data.js';
-// console.log(photosDescription);
+import './picture.js';
 
 
