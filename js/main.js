@@ -4,7 +4,8 @@
     Настройка скриптов
     ...
 */
-import './data.js';
-import './picture.js';
+import './pictures.js';
+import './big-picture.js';
+import './comments.js';
 
 

@@ -1,6 +1,6 @@
 // В файле main.js напишите необходимые функции для создания массива из 5 сгенерированных объектов. Каждый объект массива — описание фотографии, опубликованной пользователем.
 import {getRandomInteger} from './util.js';
-const NUMBER_PHOTOS = 25;
+const NUMBER_PHOTOS = 6;
 
 const DESCRIPTION_PHONO = [
   'Пустой городской пляж с лежаками вокруг озера.',
@@ -89,4 +89,5 @@ const photoDescription = (count) => {
   return photoArray;
 };
 const photosDescription = photoDescription(NUMBER_PHOTOS);
+//console.log(photosDescription);
 export {photosDescription};
