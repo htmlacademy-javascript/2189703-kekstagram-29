@@ -1,6 +1,6 @@
 // В файле main.js напишите необходимые функции для создания массива из 5 сгенерированных объектов. Каждый объект массива — описание фотографии, опубликованной пользователем.
 import {getRandomInteger} from './util.js';
-const NUMBER_PHOTOS = 6;
+const NUMBER_PHOTOS = 25;
 
 const DESCRIPTION_PHONO = [
   'Пустой городской пляж с лежаками вокруг озера.',
@@ -31,18 +31,18 @@ const DESCRIPTION_PHONO = [
 ];
 const MESSAGE = [
   'Всё отлично!',
-  'В целом всё неплохо. Но не всё.',
+  'Я поскользнулся на банановой кожуре и уронил фотоаппарат на кота и у меня получилась фотография лучше.',
   'Когда вы делаете фотографию, хорошо бы убирать палец из кадра. В конце концов это просто непрофессионально.',
   'Моя бабушка случайно чихнула с фотоаппаратом в руках и у неё получилась фотография лучше.',
-  'Я поскользнулся на банановой кожуре и уронил фотоаппарат на кота и у меня получилась фотография лучше.',
+  'В целом всё неплохо. Но не всё.',
   'Лица у людей на фотке перекошены, как будто их избивают. Как можно было поймать такой неудачный момент?!',
 ];
 const AUTOR__COMMENT = [
   'Кекс',
-  'Снежинка',
+  'Колокольчик',
   'Сладкоежка',
   'Бабочка',
-  'Колокольчик',
+  'Снежинка',
   'Артём',
 ];
 const MIN_LIKES = 15;
@@ -64,7 +64,7 @@ const comments = (a, b) => {
 
     commentObject = {
       id: i,
-      avatar: `img/avatar${ j + 1 }.svg`,
+      avatar: `./img/avatar-${ j + 1 }.svg`,
       message: MESSAGE[j],
       name: AUTOR__COMMENT[j]
     };
@@ -84,10 +84,10 @@ const photoDescription = (count) => {
       likes: getRandomInteger(MIN_LIKES, MAX_LIKES),
       comments: comments(MIN_COMMENT, MAX_COMMENT)
     };
+
     photoArray.push(photoObject);
   }
   return photoArray;
 };
 const photosDescription = photoDescription(NUMBER_PHOTOS);
-//console.log(photosDescription);
 export {photosDescription};
