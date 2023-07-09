@@ -1,5 +1,5 @@
 import {photosDescription} from './data.js';
-import {openBigPhoto} from './big-photo.js';
+import {openBigPhoto} from './modal-photo.js';
 // Отрисуйте сгенерированные DOM-элементы в блок .pictures.
 const photoListElements = document.querySelector('.pictures');
 const photoTemplate = document.querySelector('#picture').

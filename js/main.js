@@ -1,9 +1,3 @@
-/*
-    Импорты других модулей
-    Вызовы общих функций
-    Настройка скриптов
-    ...
-*/
-import './photos.js';
-import './big-photo.js';
+import './gallery-mini-photos.js';
+import './modal-photo.js';
 
