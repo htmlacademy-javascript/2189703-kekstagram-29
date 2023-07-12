@@ -1408,3 +1408,9 @@ main {
 .hidden {
   display: none;
 }
+.pristine-error {
+  background-color: #dcf297;
+  font-style: italic;
+  font-weight: 700;
+  color:#a513a1;
+}
