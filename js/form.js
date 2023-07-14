@@ -1,4 +1,5 @@
 import {isEscapeKey} from './util.js';
+import {scaleReset, onClickMinusScale, onClickPlusScale} from './scale.js';
 
 const VALID_HASHTAG = /^#[a-zа-яё0-9]{1,19}$/i;
 const MAX_HACHTAG = 5;
@@ -16,7 +17,6 @@ const pristine = new Pristine(form, {
   errorTextParent: 'img-upload__field-wrapper',
   errorTextClass: 'img-upload__field-wrapper-error-wrapper',
 });
-
 
 const hashtagsUserArray = (string) => string.trim().split(' ').filter((array) => Boolean(array.length));
 
@@ -76,6 +76,8 @@ const onEscKeydown = () => {
 function openForm () {
   modalForm.classList.remove('hidden');
   backScreen.classList.add('modal-open');
+  onClickMinusScale();
+  onClickPlusScale();
 
   document.addEventListener('keydown', onDocumentKeydown);
   onEscKeydown ();
@@ -85,6 +87,7 @@ function closeForm () {
   modalForm.classList.add('hidden');
   backScreen.classList.remove('modal-open');
   form.reset();
+  scaleReset();
 
   document.removeEventListener('keydown', onDocumentKeydown);
 }
