@@ -7,7 +7,7 @@ const scaleBigger = scale.querySelector('.scale__control--bigger');
 const scaleValue = scale.querySelector('.scale__control--value');
 const preview = document.querySelector('.img-upload__preview');
 
-const clickMinusScale = () => {
+const onClickMinusScale = () => {
   let value = parseInt(scaleValue.value, 10);
 
   if (value > MIN_SCALE) {
@@ -19,7 +19,7 @@ const clickMinusScale = () => {
   }
 };
 
-const clickPlusScale = () => {
+const onClickPlusScale = () => {
   let value = parseInt(scaleValue.value, 10);
 
   if (value < MAX_SCALE) {
@@ -31,14 +31,12 @@ const clickPlusScale = () => {
   }
 };
 
-const onClickMinusScale = scaleSmaller.addEventListener('click', clickMinusScale);
-const onClickPlusScale = scaleBigger.addEventListener('click', clickPlusScale);
+scaleSmaller.addEventListener('click', onClickMinusScale);
+scaleBigger.addEventListener('click', onClickPlusScale);
 
 
 const scaleReset = () => {
   preview.style.transform = 'scale(1)';
-  scaleValue.value = '100%';
 };
 
-export {scaleReset, onClickMinusScale, onClickPlusScale};
-
+export {scaleReset};
