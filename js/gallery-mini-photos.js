@@ -31,4 +31,5 @@ const renderPhotoElements = (photos) => {
   photoListElements.append(photoListFragment);
 };
 
+
 renderPhotoElements(photosDescription);
