@@ -70,6 +70,7 @@ noUiSlider.create(sliderEffect, {
 
 function sliderReset () {
   slider.classList.add('hidden');
+  imgPreview.removeAttribute('style');
 }
 sliderReset();
 
