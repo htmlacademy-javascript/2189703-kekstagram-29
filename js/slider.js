@@ -76,34 +76,41 @@ sliderReset();
 checkedEffects.forEach((effect) => {
   effect.addEventListener('change', () => {
     slider.classList.remove('hidden');
-
-    if (effect.value === 'chrome') {
-      effect = CHROME;
-    } else if (effect.value === 'sepia') {
-      effect = SEPIA;
-    } else if (effect.value === 'marvin') {
-      effect = MARVIN;
-    } else if (effect.value === 'phobos') {
-      effect = PHOBOS;
-    } else if (effect.value === 'heat') {
-      effect = HEAT;
-    } else if (effect.value === 'none') {
-      sliderReset();
+    switch (effect.value) {
+      case 'chrome':
+        effect = CHROME;
+        break;
+      case 'sepia':
+        effect = SEPIA;
+        break;
+      case 'marvin':
+        effect = MARVIN;
+        break;
+      case 'phobos':
+        effect = PHOBOS;
+        break;
+      case 'heat':
+        effect = HEAT;
+        break;
+      case 'none':
+        sliderReset();
     }
-    sliderEffect.noUiSlider.updateOptions ({
-      range: effect.range,
-      start: effect.start,
-      step: effect.step,
-    });
-    sliderEffect.noUiSlider.on('update', () => {
-      valueEffect.value = sliderEffect.noUiSlider.get();
-      //console.log(valueEffect.value);
-      imgPreview.style.filter = `${effect.filter }(${ valueEffect.value }${effect.dimension})`;
-     // console.log(imgPreview.style.filter);
-    });
+    try {
+      sliderEffect.noUiSlider.updateOptions ({
+        range: effect.range,
+        start: effect.start,
+        step: effect.step,
+      });
+      sliderEffect.noUiSlider.on('update',() => {
+        valueEffect.value = sliderEffect.noUiSlider.get();
+        imgPreview.style.filter = `${effect.filter }(${ valueEffect.value }${effect.dimension})`;
+      });
+    } catch {
+      imgPreview.removeAttribute('style');
+    }
 
   });
 });
-//export {sliderReset};
+export {sliderReset};
 
 

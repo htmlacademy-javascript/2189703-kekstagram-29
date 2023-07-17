@@ -1,6 +1,6 @@
 import {isEscapeKey} from './util.js';
 import {scaleReset} from './scale.js';
-//import {sliderReset} from './slider.js';
+import {sliderReset} from './slider.js';
 
 const VALID_HASHTAG = /^#[a-zа-яё0-9]{1,19}$/i;
 const MAX_HACHTAG = 5;
@@ -87,7 +87,7 @@ function closeForm () {
   backScreen.classList.remove('modal-open');
   form.reset();
   scaleReset();
-  //sliderReset();
+  sliderReset();
 
   document.removeEventListener('keydown', onDocumentKeydown);
 }
