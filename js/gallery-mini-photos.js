@@ -1,4 +1,4 @@
-import {photosDescription} from './data.js';
+//import {photosDescription} from './data.js';
 import {openBigPhoto} from './modal-photo.js';
 
 const photoListElements = document.querySelector('.pictures');
@@ -9,7 +9,7 @@ const photoTemplate = document.querySelector('#picture').
 const createPhotoElement = ({url, description, likes, comments}) => {
   const photoElement = photoTemplate.cloneNode(true);
 
-  photoElement.querySelector('.picture__img').src = `./photos/${ url}`;
+  photoElement.querySelector('.picture__img').src = url;
   photoElement.querySelector('.picture__img').alt = description;
   photoElement.querySelector('.picture__likes').textContent = likes;
   photoElement.querySelector('.picture__comments').textContent = comments.length;
@@ -32,4 +32,6 @@ const renderPhotoElements = (photos) => {
 };
 
 
-renderPhotoElements(photosDescription);
+//renderPhotoElements(photosDescription);
+
+export {renderPhotoElements};

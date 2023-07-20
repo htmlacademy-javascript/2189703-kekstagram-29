@@ -39,4 +39,4 @@ const scaleReset = () => {
   preview.style.transform = 'scale(1)';
 };
 
-export {scaleReset};
+export {scaleReset, onClickMinusScale, onClickPlusScale};
