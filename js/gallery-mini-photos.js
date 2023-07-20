@@ -32,6 +32,4 @@ const renderPhotoElements = (photos) => {
 };
 
 
-//renderPhotoElements(photosDescription);
-
 export {renderPhotoElements};

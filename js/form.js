@@ -1,8 +1,8 @@
 import {isEscapeKey} from './util.js';
 import {scaleReset, onClickMinusScale, onClickPlusScale} from './scale.js';
 import {sliderReset} from './slider.js';
-import {showAlert} from './util.js';
 import {sendData} from './api.js';
+import {openShowSuccess, openShowError} from './message.js';
 
 
 const VALID_HASHTAG = /^#[a-zа-яё0-9]{1,19}$/i;
@@ -62,9 +62,10 @@ const setFormSubmit = (onSuccess) => {
         () => {
           onSuccess();
           unblockSubmitButton();
+          openShowSuccess();
         },
         () => {
-          showAlert('Не удалось отправить форму. Попробуйте ещё раз');
+          openShowError();
           unblockSubmitButton();
         },
         new FormData(evt.target),
