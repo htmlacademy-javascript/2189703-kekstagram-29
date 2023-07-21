@@ -1,13 +1,29 @@
-// Функция для поиска случайного числа между а и b;
-const getRandomInteger = (a, b) => {
-  const lower = Math.ceil(Math.min(a, b));
-  const upper = Math.floor(Math.max(a, b));
-  const result = Math.random() * (upper - lower + 1) + lower;
-  return Math.floor(result);
-};
+const ALERT_SHOW_TIME = 5000;
 
 const isEnterKey = (evt) => evt.key === 'Enter';
 
 const isEscapeKey = (evt) => evt.key === 'Escape';
 
-export{getRandomInteger, isEscapeKey, isEnterKey};
+const showAlert = (message) => {
+  const alertContainer = document.createElement('div');
+  alertContainer.style.zIndex = '100';
+  alertContainer.style.position = 'absolute';
+  alertContainer.style.left = '0';
+  alertContainer.style.top = '0';
+  alertContainer.style.right = '0';
+  alertContainer.style.padding = '50px 30px';
+  alertContainer.style.fontSize = '30px';
+  alertContainer.style.textAlign = 'center';
+  alertContainer.style.backgroundColor = 'red';
+
+  alertContainer.textContent = message;
+
+  document.body.append(alertContainer);
+
+  setTimeout(() => {
+    alertContainer.remove();
+  }, ALERT_SHOW_TIME);
+};
+
+
+export{isEscapeKey, isEnterKey, showAlert};

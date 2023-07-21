@@ -50,7 +50,7 @@ const renderComments = () => {
 };
 
 const renderPhotoClickClass = (({url, description, likes}) => {
-  photoClick.querySelector('.big-picture__img img').src = `./photos/${ url}`;
+  photoClick.querySelector('.big-picture__img img').src = url;
   photoClick.querySelector('.big-picture__img img').alt = description;
   photoClick.querySelector('.likes-count').textContent = likes;
   photoClick.querySelector('.social__caption').textContent = description;

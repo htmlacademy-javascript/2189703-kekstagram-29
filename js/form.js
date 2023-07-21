@@ -1,6 +1,9 @@
 import {isEscapeKey} from './util.js';
-import {scaleReset} from './scale.js';
+import {scaleReset, onClickMinusScale, onClickPlusScale} from './scale.js';
 import {sliderReset} from './slider.js';
+import {sendData} from './api.js';
+import {openShowSuccess, openShowError} from './message.js';
+
 
 const VALID_HASHTAG = /^#[a-zа-яё0-9]{1,19}$/i;
 const MAX_HACHTAG = 5;
@@ -12,12 +15,24 @@ const backScreen = document.querySelector('body');
 const buttonCloseForm = form.querySelector('.img-upload__cancel');
 const hashtagsUser = form.querySelector('.text__hashtags');
 const commentUser = form.querySelector('.text__description');
+const buttonSubmit = form.querySelector('.img-upload__submit');
+
 
 const pristine = new Pristine(form, {
   classTo: 'img-upload__field-wrapper',
   errorTextParent: 'img-upload__field-wrapper',
   errorTextClass: 'img-upload__field-wrapper-error-wrapper',
 });
+
+const blockSubmitButton = () => {
+  buttonSubmit.disabled = true;
+  buttonSubmit.textContent = 'Публикую...';
+};
+
+const unblockSubmitButton = () => {
+  buttonSubmit.disabled = false;
+  buttonSubmit.textContent = 'Опубликовать';
+};
 
 const hashtagsUserArray = (string) => string.trim().split(' ').filter((array) => Boolean(array.length));
 
@@ -36,12 +51,30 @@ pristine.addValidator(hashtagsUser, hashtagsUserValidSum, errorTextValidSum, 3);
 pristine.addValidator(hashtagsUser, hashtagsUserValidHashtag, errorTextValidHashtag, 2);
 pristine.addValidator(hashtagsUser, hashtagsUserValidUnique, errorTextValidUnique, 1);
 
-form.addEventListener('submit', (evt) => {
-  const isValid = pristine.validate();
-  if (!isValid) {
+const setFormSubmit = (onSuccess) => {
+  form.addEventListener('submit', (evt) => {
     evt.preventDefault();
-  }
-});
+
+    const isValid = pristine.validate();
+    if (isValid) {
+      blockSubmitButton();
+      sendData(
+        () => {
+          onSuccess();
+          unblockSubmitButton();
+          openShowSuccess();
+        },
+        () => {
+          openShowError();
+          unblockSubmitButton();
+        },
+        new FormData(evt.target),
+      );
+
+    }
+  });
+};
+
 
 const onDocumentKeydown = (evt) => {
   if (isEscapeKey(evt)) {
@@ -77,6 +110,8 @@ const onEscKeydown = () => {
 function openForm () {
   modalForm.classList.remove('hidden');
   backScreen.classList.add('modal-open');
+  onClickMinusScale();
+  onClickPlusScale();
 
   document.addEventListener('keydown', onDocumentKeydown);
   onEscKeydown ();
@@ -91,3 +126,5 @@ function closeForm () {
 
   document.removeEventListener('keydown', onDocumentKeydown);
 }
+
+export {closeForm, setFormSubmit};
