@@ -76,7 +76,7 @@ const setFormSubmit = (onSuccess) => {
 };
 
 
-const onDocumentKeydown = (evt) => {
+const onFormKeydown = (evt) => {
   if (isEscapeKey(evt)) {
     evt.preventDefault();
     closeForm();
@@ -113,7 +113,7 @@ function openForm () {
   onClickMinusScale();
   onClickPlusScale();
 
-  document.addEventListener('keydown', onDocumentKeydown);
+  form.addEventListener('keydown', onFormKeydown);
   onEscKeydown ();
 }
 
@@ -124,7 +124,7 @@ function closeForm () {
   scaleReset();
   sliderReset();
 
-  document.removeEventListener('keydown', onDocumentKeydown);
+  form.removeEventListener('keydown', onFormKeydown);
 }
 
 export {closeForm, setFormSubmit};

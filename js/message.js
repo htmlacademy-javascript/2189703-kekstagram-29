@@ -50,7 +50,7 @@ function closeShowSuccess () {
 function openShowError () {
   document.body.append(error);
 
-  document.addEventListener('keydown', onDocumentKeydown);
+  body.addEventListener('keydown', onDocumentKeydown);
 }
 
 function closeShowError () {
