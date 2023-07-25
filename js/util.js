@@ -1,5 +1,3 @@
-
-
 const ALERT_SHOW_TIME = 5000;
 
 const isEnterKey = (evt) => evt.key === 'Enter';
@@ -29,6 +27,8 @@ const showAlert = (message) => {
 
 const debounce = (callback, timeoutDelay) => {
   let timeoutId;
+  console.log('debounce');
+
   return (...rest) => {
     clearTimeout(timeoutId);
     timeoutId = setTimeout(() => callback.apply(this, rest), timeoutDelay);

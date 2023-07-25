@@ -1,7 +1,8 @@
+/* eslint-disable no-nested-ternary */
 import {openBigPhoto} from './modal-photo.js';
 import { debounce } from './util.js';
 
-const RERENDER_DELAY = 1000;
+const RERENDER_DELAY = 500;
 
 const MAX_SHOW = 10;
 
@@ -47,34 +48,46 @@ const sortDiscussed = (photoA, photoB) => photoB.comments.length - photoA.commen
 
 const onFilterClick = () => {
   filters.addEventListener('click', (evt) => {
-    filters.querySelector('.img-filters__button--active').classList.remove('img-filters__button--active');
     switch (evt.target.id) {
       case 'filter-random':
+        filters.querySelector('.img-filters__button--active').classList.remove('img-filters__button--active');
 
         evt.target.classList.add('img-filters__button--active');
-        showSortPhoto = [...sortPhotos].sort(sortRandom).slice(0, MAX_SHOW);
         break;
       case 'filter-discussed':
+        filters.querySelector('.img-filters__button--active').classList.remove('img-filters__button--active');
+
         evt.target.classList.add('img-filters__button--active');
-        showSortPhoto = [...sortPhotos].sort(sortDiscussed);
         break;
       case 'filter-default':
+        filters.querySelector('.img-filters__button--active').classList.remove('img-filters__button--active');
+
         filters.querySelector('#filter-default').classList.add('img-filters__button--active');
-        showSortPhoto = [...sortPhotos];
         break;
     }
-
-    renderPhotoElements(showSortPhoto);
+    sortGaleryPhoto();
   });
 };
+
+
+function sortGaleryPhoto () {
+  const filterActive = filters.querySelector('.img-filters__button--active');
+  showSortPhoto = (filterActive.id === 'filter-random')
+    ? [...sortPhotos].sort(sortRandom).slice(0, MAX_SHOW)
+    : (filterActive.id === 'filter-discussed')
+      ? [...sortPhotos].sort(sortDiscussed)
+      : [...sortPhotos];
+  // renderPhotoElements(showSortPhoto);
+  debounce(renderPhotoElements(showSortPhoto), RERENDER_DELAY);
+}
 
 const sortGallery = (photos) => {
   sortPhotos = [...photos];
   showSortPhoto = sortPhotos;
 
-  renderPhotoElements(showSortPhoto);
   filters.classList.remove('img-filters--inactive');
-  debounce(onFilterClick(), RERENDER_DELAY);
+  // debounce(onFilterClick(), RERENDER_DELAY);
+  onFilterClick();
 };
 
 export {sortGallery,renderPhotoElements};
