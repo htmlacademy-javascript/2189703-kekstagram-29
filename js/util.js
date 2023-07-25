@@ -27,7 +27,7 @@ const showAlert = (message) => {
 
 const debounce = (callback, timeoutDelay) => {
   let timeoutId;
-  console.log('debounce');
+  // console.log('debounce');
 
   return (...rest) => {
     clearTimeout(timeoutId);
