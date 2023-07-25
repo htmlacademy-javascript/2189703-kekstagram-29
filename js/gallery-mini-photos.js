@@ -47,7 +47,7 @@ const sortRandom = () => Math.random() - 0.5;
 const sortDiscussed = (photoA, photoB) => photoB.comments.length - photoA.comments.length;
 
 const onFilterClick = () => {
-  filters.addEventListener('click', (evt) => {
+  filters.addEventListener('click', debounce((evt) => {
     switch (evt.target.id) {
       case 'filter-random':
         filters.querySelector('.img-filters__button--active').classList.remove('img-filters__button--active');
@@ -66,8 +66,8 @@ const onFilterClick = () => {
         break;
     }
     sortGaleryPhoto();
-  });
-
+  }, RERENDER_DELAY)
+  );
 };
 
 
@@ -78,8 +78,7 @@ function sortGaleryPhoto () {
     : (filterActive.id === 'filter-discussed')
       ? [...sortPhotos].sort(sortDiscussed)
       : [...sortPhotos];
-  // renderPhotoElements(showSortPhoto);
-  debounce(renderPhotoElements(showSortPhoto), RERENDER_DELAY);
+  renderPhotoElements(showSortPhoto);
 }
 
 const sortGallery = (photos) => {
@@ -87,7 +86,6 @@ const sortGallery = (photos) => {
   showSortPhoto = sortPhotos;
 
   filters.classList.remove('img-filters--inactive');
-  // debounce(onFilterClick(), RERENDER_DELAY);
   onFilterClick();
 };
 
