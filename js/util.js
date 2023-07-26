@@ -27,11 +27,10 @@ const showAlert = (message) => {
 
 const debounce = (callback, timeoutDelay) => {
   let timeoutId;
-  // console.log('debounce');
-
   return (...rest) => {
     clearTimeout(timeoutId);
     timeoutId = setTimeout(() => callback.apply(this, rest), timeoutDelay);
   };
 };
+
 export{isEscapeKey, isEnterKey, showAlert, debounce};
