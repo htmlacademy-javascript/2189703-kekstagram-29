@@ -1,9 +1,7 @@
-/* eslint-disable no-nested-ternary */
 import {openBigPhoto} from './modal-photo.js';
 import { debounce } from './util.js';
 
 const RERENDER_DELAY = 500;
-
 const MAX_SHOW = 10;
 
 const photoListElements = document.querySelector('.pictures');
@@ -73,11 +71,17 @@ const onFilterClick = () => {
 
 function sortGaleryPhoto () {
   const filterActive = filters.querySelector('.img-filters__button--active');
-  showSortPhoto = (filterActive.id === 'filter-random')
-    ? [...sortPhotos].sort(sortRandom).slice(0, MAX_SHOW)
-    : (filterActive.id === 'filter-discussed')
-      ? [...sortPhotos].sort(sortDiscussed)
-      : [...sortPhotos];
+  switch (filterActive.id) {
+    case 'filter-random':
+      showSortPhoto = [...sortPhotos].sort(sortRandom).slice(0, MAX_SHOW);
+      break;
+    case 'filter-discussed':
+      showSortPhoto = [...sortPhotos].sort(sortDiscussed);
+      break;
+    default:
+      showSortPhoto = [...sortPhotos];
+  }
+
   renderPhotoElements(showSortPhoto);
 }
 
