@@ -1,57 +1,56 @@
-const CHROME = {
-  filter: 'grayscale',
-  dimension: '',
-  range: {
-    min: 0,
-    max: 1,
+const Effects = {
+  chrome: {
+    filter: 'grayscale',
+    dimension: '',
+    range: {
+      min: 0,
+      max: 1,
+    },
+    start: 1,
+    step: 0.1,
   },
-  start: 1,
-  step: 0.1,
+  sepia: {
+    filter: 'sepia',
+    dimension: '',
+    range: {
+      min: 0,
+      max: 1,
+    },
+    start: 1,
+    step: 0.1,
+  },
+  marvin: {
+    filter: 'invert',
+    dimension: '%',
+    range: {
+      min: 0,
+      max: 100,
+    },
+    start: 100,
+    step: 1,
+  },
+  phobos: {
+    filter: 'blur',
+    dimension: 'px',
+    range: {
+      min: 0,
+      max: 3,
+    },
+    start: 3,
+    step: 0.1,
+  },
+  heat: {
+    filter: 'brightness',
+    dimension: '',
+    range: {
+      min: 1,
+      max: 3,
+    },
+    start: 3,
+    step: 0.1,
+  },
 };
 
-const SEPIA = {
-  filter: 'sepia',
-  dimension: '',
-  range: {
-    min: 0,
-    max: 1,
-  },
-  start: 1,
-  step: 0.1,
-};
-
-const MARVIN = {
-  filter: 'invert',
-  dimension: '%',
-  range: {
-    min: 0,
-    max: 100,
-  },
-  start: 100,
-  step: 1,
-};
-
-const PHOBOS = {
-  filter: 'blur',
-  dimension: 'px',
-  range: {
-    min: 0,
-    max: 3,
-  },
-  start: 3,
-  step: 0.1,
-};
-
-const HEAT = {
-  filter: 'brightness',
-  dimension: '',
-  range: {
-    min: 1,
-    max: 3,
-  },
-  start: 3,
-  step: 0.1,
-};
 const sliderEffect = document.querySelector('.effect-level__slider');
 const valueEffect = document.querySelector('.effect-level__value');
 const checkedEffects = document.querySelectorAll('.effects__radio');
@@ -79,19 +78,19 @@ checkedEffects.forEach((effect) => {
     slider.classList.remove('hidden');
     switch (effect.value) {
       case 'chrome':
-        effect = CHROME;
+        effect = Effects.chrome;
         break;
       case 'sepia':
-        effect = SEPIA;
+        effect = Effects.sepia;
         break;
       case 'marvin':
-        effect = MARVIN;
+        effect = Effects.marvin;
         break;
       case 'phobos':
-        effect = PHOBOS;
+        effect = Effects.phobos;
         break;
       case 'heat':
-        effect = HEAT;
+        effect = Effects.heat;
         break;
       case 'none':
         sliderReset();

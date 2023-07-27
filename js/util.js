@@ -1,7 +1,5 @@
 const ALERT_SHOW_TIME = 5000;
 
-const isEnterKey = (evt) => evt.key === 'Enter';
-
 const isEscapeKey = (evt) => evt.key === 'Escape';
 
 const showAlert = (message) => {
@@ -33,4 +31,4 @@ const debounce = (callback, timeoutDelay) => {
   };
 };
 
-export{isEscapeKey, isEnterKey, showAlert, debounce};
+export{isEscapeKey, showAlert, debounce};
