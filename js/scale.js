@@ -4,8 +4,8 @@ const STEP_SCALE = 25;
 const scale = document.querySelector('.scale');
 const scaleSmaller = scale.querySelector('.scale__control--smaller');
 const scaleBigger = scale.querySelector('.scale__control--bigger');
-const scaleValue = scale.querySelector('.scale__control--value');
-const preview = document.querySelector('.img-upload__preview');
+const scaleValue = scale.querySelector('.scale__control--value ');
+const preview = document.querySelector('.img-upload__preview img');
 
 const onClickMinusScale = () => {
   let value = parseInt(scaleValue.value, 10);
