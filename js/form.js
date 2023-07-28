@@ -4,7 +4,8 @@ import {sliderReset} from './slider.js';
 import {sendData} from './api.js';
 import {openShowSuccess, openShowError} from './message.js';
 
-
+const TEXT_BUTTON_DEFAULT = 'Опубликовать';
+const TEXT_BUTTON_BLOCKED = 'Публикую...';
 const VALID_HASHTAG = /^#[a-zа-яё0-9]{1,19}$/i;
 const MAX_HACHTAG = 5;
 
@@ -24,14 +25,9 @@ const pristine = new Pristine(form, {
   errorTextClass: 'img-upload__field-wrapper-error-wrapper',
 });
 
-const blockSubmitButton = () => {
-  buttonSubmit.disabled = true;
-  buttonSubmit.textContent = 'Публикую...';
-};
-
-const unblockSubmitButton = () => {
-  buttonSubmit.disabled = false;
-  buttonSubmit.textContent = 'Опубликовать';
+const workSubmitButton = (work, text) => {
+  buttonSubmit.disabled = work;
+  buttonSubmit.textContent = text;
 };
 
 const hashtagsUserArray = (string) => string.trim().split(' ').filter((array) => Boolean(array.length));
@@ -57,16 +53,16 @@ const setFormSubmit = (onSuccess) => {
 
     const isValid = pristine.validate();
     if (isValid) {
-      blockSubmitButton();
+      workSubmitButton(true, TEXT_BUTTON_BLOCKED);
       sendData(
         () => {
           onSuccess();
-          unblockSubmitButton();
+          workSubmitButton(false, TEXT_BUTTON_DEFAULT);
           openShowSuccess();
         },
         () => {
           openShowError();
-          unblockSubmitButton();
+          workSubmitButton(false, TEXT_BUTTON_DEFAULT);
         },
         new FormData(evt.target),
       );
