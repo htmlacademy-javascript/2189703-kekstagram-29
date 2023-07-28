@@ -1,5 +1,7 @@
-const getData = () => fetch(
-  'https://29.javascript.pages.academy/kekstagram/data')
+const GET_URL = 'https://29.javascript.pages.academy/kekstagram/data';
+const SEND_URL = 'https://29.javascript.pages.academy/kekstagram';
+
+const getData = () => fetch(GET_URL)
   .then((response) => {
     if (!response.ok) {
       throw new Error();
@@ -11,8 +13,7 @@ const getData = () => fetch(
   });
 
 const sendData = (onSuccess, onFail, body) => {
-  fetch(
-    'https://29.javascript.pages.academy/kekstagram',
+  fetch(SEND_URL,
     {
       method: 'POST',
       body,
@@ -28,6 +29,5 @@ const sendData = (onSuccess, onFail, body) => {
       onFail(err.message);
     });
 };
-
 
 export {getData, sendData};
